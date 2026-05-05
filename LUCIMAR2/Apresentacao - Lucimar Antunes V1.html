@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apresentação · Lucimar Antunes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1411;
+    --bg-deep: #08100D;
+    --bg-soft: #161D1A;
+    --green: #1F2D27;
+    --green-deep: #111A19;
+    --wine: #8B2535;
+    --wine-soft: #5A1A23;
+    --sage: #C8DDBF;
+    --cream: #F6F4F0;
+    --cream-dim: #C5BEB0;
+    --ink-dim: rgba(246,244,240,0.55);
+    --ink-faint: rgba(246,244,240,0.32);
+    --line: rgba(200,221,191,0.10);
+    --line-strong: rgba(200,221,191,0.22);
+    --line-wine: rgba(139,37,53,0.32);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  .serif { font-family: 'Cormorant', serif; font-weight: 300; }
+
+  .slide {
+    min-height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-chrome {
+    position: absolute;
+    top: 2rem;
+    left: 5rem;
+    right: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    z-index: 10;
+    font-weight: 400;
+  }
+  .slide-chrome-mark { color: var(--sage); opacity: 0.7; }
+  .slide-chrome-num {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-dim);
+    text-transform: none;
+  }
+
+  .eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .eyebrow::before {
+    content: ""; width: 36px; height: 1px; background: var(--sage); opacity: 0.6;
+  }
+
+  .display-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 300;
+    line-height: 0.96;
+    letter-spacing: -0.022em;
+  }
+  .display-title em { font-style: italic; color: var(--sage); }
+
+  /* ━━━━━━━━━ CAPA ━━━━━━━━━ */
+  .cover {
+    background:
+      radial-gradient(ellipse at 25% 30%, rgba(31,45,39,0.55), transparent 55%),
+      radial-gradient(ellipse at 75% 75%, rgba(139,37,53,0.18), transparent 60%),
+      var(--bg-deep);
+  }
+  .cover-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-title {
+    font-size: clamp(3rem, 7.5vw, 7rem);
+    margin-bottom: 2.5rem;
+    max-width: 16ch;
+  }
+  .cover-deck {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--cream-dim);
+    max-width: 46ch;
+    margin-bottom: 4rem;
+    font-weight: 300;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4rem;
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .cover-meta strong {
+    color: var(--cream);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+  .cover-decorative {
+    position: absolute;
+    top: 50%;
+    right: 5rem;
+    transform: translate(0, -50%) rotate(-15deg);
+    width: 320px;
+    height: 320px;
+    border: 1.5px solid var(--sage);
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: rgba(200,221,191,0.4);
+    opacity: 0.35;
+  }
+  .cover-decorative-2 {
+    position: absolute;
+    top: 50%;
+    right: calc(5rem + 110px);
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    border: 1px dashed rgba(139,37,53,0.36);
+    border-radius: 50%;
+    animation: spin 90s linear infinite;
+    z-index: 1;
+  }
+  @keyframes spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  /* ━━━━━━━━━ CONCEITO ━━━━━━━━━ */
+  .conceito {
+    background: var(--bg);
+  }
+  .conceito-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .conceito-text .display-title {
+    font-size: clamp(2.4rem, 4.4vw, 4rem);
+    margin-bottom: 2rem;
+  }
+  .conceito-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--cream-dim);
+    margin-bottom: 1.4rem;
+    max-width: 56ch;
+    font-weight: 300;
+  }
+  .conceito-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .pillar {
+    background: var(--bg);
+    padding: 2.2rem 2rem;
+    transition: background .35s ease;
+  }
+  .pillar:hover { background: var(--bg-soft); }
+  .pillar-num {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 2.8rem;
+    color: var(--wine);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    display: block;
+    font-weight: 400;
+  }
+  .pillar h4 {
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+  .pillar p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--cream-dim);
+    font-weight: 300;
+  }
+
+  /* ━━━━━━━━━ PREVIEW (slide com iframe) ━━━━━━━━━ */
+  .preview {
+    background: var(--bg-deep);
+    padding: 0;
+  }
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    width: 100%;
+    height: 100vh;
+  }
+  .preview-info {
+    padding: 6rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+  }
+  .preview-paleta {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .preview-paleta-tag {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+  }
+  .preview-numero {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 5rem;
+    line-height: 0.85;
+    color: var(--cream);
+    font-weight: 300;
+    margin-bottom: 0.2rem;
+  }
+  .preview-numero em { color: var(--sage); }
+  .preview-nome {
+    font-family: 'Cormorant', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--cream);
+    margin-bottom: 1.6rem;
+    letter-spacing: -0.01em;
+  }
+  .preview-nome em { font-style: italic; color: var(--sage); }
+  .preview-desc {
+    font-size: 1rem;
+    line-height: 1.78;
+    color: var(--cream-dim);
+    margin-bottom: 2.5rem;
+    max-width: 38ch;
+    font-weight: 300;
+  }
+  .preview-attrs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+  }
+  .preview-attr-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+  }
+  .preview-attr-value {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .preview-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.95rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--cream);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .25s ease, border-color .25s ease, color .25s ease;
+    font-weight: 400;
+  }
+  .btn:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: var(--bg-deep);
+  }
+  .btn-primary {
+    background: var(--cream);
+    border-color: var(--cream);
+    color: var(--bg-deep);
+  }
+  .btn-primary:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .preview-frame-wrap {
+    position: relative;
+    border-left: 1px solid var(--line);
+    background: var(--bg-soft);
+    overflow: hidden;
+  }
+  .preview-bar {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    height: 32px;
+    background: rgba(8,16,13,0.95);
+    border: 1px solid var(--line-strong);
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 0.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    z-index: 2;
+    font-weight: 400;
+  }
+  .preview-bar-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .preview-bar-dot:nth-child(1) { background: rgba(255,90,90,0.55); }
+  .preview-bar-dot:nth-child(2) { background: rgba(255,200,90,0.55); }
+  .preview-bar-dot:nth-child(3) { background: rgba(120,220,120,0.55); }
+  .preview-bar-url { margin-left: 1rem; opacity: 0.6; }
+  .preview-frame {
+    position: absolute;
+    top: calc(5% + 32px);
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    background: white;
+    overflow: hidden;
+  }
+  .preview-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ━━━━━━━━━ FEATURES (recursos) ━━━━━━━━━ */
+  .features {
+    background: var(--bg);
+  }
+  .features-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .features-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+  .features-header .display-title {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .feature {
+    background: var(--bg);
+    padding: 2.4rem 2rem;
+    transition: background .35s ease;
+  }
+  .feature:hover { background: var(--bg-soft); }
+  .feature-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--sage);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+    color: var(--sage);
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .feature h3 {
+    font-family: 'Cormorant', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    margin-bottom: 0.7rem;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+  .feature p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    font-weight: 300;
+  }
+
+  /* ━━━━━━━━━ DESKTOP + MOBILE ━━━━━━━━━ */
+  .responsivo {
+    background: var(--bg-deep);
+  }
+  .responsivo-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .responsivo-header {
+    margin-bottom: 4rem;
+    max-width: 56ch;
+  }
+  .responsivo-display {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .desktop-mock {
+    aspect-ratio: 16/10;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    background: white;
+    overflow: hidden;
+    position: relative;
+  }
+  .desktop-mock iframe { width: 100%; height: 100%; border: 0; }
+  .desktop-mock-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 22px;
+    background: rgba(8,16,13,0.92);
+    display: flex; align-items: center;
+    padding: 0 0.7rem; gap: 0.4rem;
+    z-index: 2;
+  }
+  .desktop-mock-bar-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .desktop-mock-bar-dot:nth-child(1) { background: rgba(255,90,90,0.55); }
+  .desktop-mock-bar-dot:nth-child(2) { background: rgba(255,200,90,0.55); }
+  .desktop-mock-bar-dot:nth-child(3) { background: rgba(120,220,120,0.55); }
+  .desktop-mock iframe {
+    margin-top: 22px;
+    height: calc(100% - 22px);
+  }
+
+  .mobile-mock {
+    aspect-ratio: 9/19;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    border: 8px solid #1A1714;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+    background: white;
+    position: relative;
+  }
+  .mobile-mock::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 18px;
+    background: #1A1714;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    z-index: 3;
+  }
+  .mobile-mock iframe {
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  /* ━━━━━━━━━ CTA / FECHAMENTO ━━━━━━━━━ */
+  .closing {
+    background:
+      radial-gradient(ellipse at 50% 60%, rgba(139,37,53,0.18), transparent 60%),
+      var(--bg-deep);
+    text-align: center;
+  }
+  .closing-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .closing-display {
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    margin-bottom: 2rem;
+  }
+  .closing-display em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .closing-deck {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--cream-dim);
+    max-width: 50ch;
+    margin: 0 auto 3.5rem;
+    font-weight: 300;
+  }
+  .closing-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  .closing-foot {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+    font-weight: 400;
+  }
+  .closing-foot strong {
+    color: var(--cream);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+
+  /* ━━━━━━━━━ NAV / INDICATORS ━━━━━━━━━ */
+  .nav-help {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 200;
+    background: rgba(14,20,17,0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+    padding: 0.6rem 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 400;
+  }
+  .nav-help-key {
+    border: 1px solid var(--line-strong);
+    padding: 0.15rem 0.45rem;
+    font-size: 0.7rem;
+    color: var(--cream);
+  }
+  .indicators {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .indicator {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(246,244,240,0.25);
+    cursor: pointer;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .indicator:hover { background: var(--sage); transform: scale(1.4); }
+  .indicator.active { background: var(--sage); transform: scale(1.6); }
+
+  @media print {
+    body { height: auto; overflow: visible; scroll-snap-type: none; }
+    .slide { page-break-after: always; min-height: auto; height: 100vh; }
+    .nav-help, .indicators { display: none; }
+  }
+
+  @media (max-width: 1024px) {
+    .slide { padding: 3rem 1.5rem; }
+    .slide-chrome { left: 1.5rem; right: 1.5rem; }
+    .conceito-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .preview-grid { grid-template-columns: 1fr; height: auto; }
+    .preview-info { padding: 5rem 1.5rem 3rem; }
+    .preview-frame-wrap { height: 80vh; border-left: none; border-top: 1px solid var(--line); }
+    .features-grid { grid-template-columns: 1fr; }
+    .responsivo-display { grid-template-columns: 1fr; gap: 3rem; }
+    .mobile-mock { max-width: 240px; }
+    .cover-decorative, .cover-decorative-2 { display: none; }
+    .cover-meta { grid-template-columns: 1fr; gap: 1.5rem; }
+    .nav-help, .indicators { display: none; }
+    .preview-attrs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="indicators" id="indicators"></div>
+
+<div class="nav-help">
+  <span>Navegar</span>
+  <span class="nav-help-key">↑</span>
+  <span class="nav-help-key">↓</span>
+  <span>·</span>
+  <span class="nav-help-key">SPACE</span>
+</div>
+
+<!-- ━━━━━━━━━ CAPA ━━━━━━━━━ -->
+<section class="slide cover" data-name="Capa">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— Apresentação · Lucimar Antunes</span>
+    <span class="slide-chrome-num">i.</span>
+  </div>
+
+  <div class="cover-decorative-2"></div>
+  <div class="cover-decorative"></div>
+
+  <div class="cover-content">
+    <span class="eyebrow">Identidade digital · 2026</span>
+    <h1 class="display-title cover-title">Uma <em>presença</em> que escuta</h1>
+    <p class="cover-deck">
+      Site institucional para a psicóloga Lucimar Antunes — uma linguagem visual cinematográfica que traduz acolhimento, profundidade e autenticidade.
+    </p>
+    <div class="cover-meta">
+      <div>
+        <strong>Cliente</strong>
+        Lucimar Antunes<br>CRP 06/229039
+      </div>
+      <div>
+        <strong>Abordagem</strong>
+        Humanista Existencial<br>Fenomenológica
+      </div>
+      <div>
+        <strong>Entrega</strong>
+        Site responsivo<br>Desktop &amp; Mobile
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━ CONCEITO ━━━━━━━━━ -->
+<section class="slide conceito" data-name="Conceito">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— O conceito</span>
+    <span class="slide-chrome-num">ii.</span>
+  </div>
+
+  <div class="conceito-grid">
+    <div class="conceito-text">
+      <span class="eyebrow">— O que está por trás</span>
+      <h2 class="display-title">Acolher antes<br>de <em>responder</em></h2>
+      <p>
+        A escuta humanista existencial parte do que se mostra — não do diagnóstico. O site precisa traduzir essa qualidade: ser um lugar onde se respira antes de se nomear.
+      </p>
+      <p>
+        Por isso a paleta noturna, o ritmo lento e os elementos que se revelam aos poucos. Nada grita. Tudo convida.
+      </p>
+    </div>
+
+    <div class="conceito-pillars">
+      <div class="pillar">
+        <span class="pillar-num">i.</span>
+        <h4>Acolhimento</h4>
+        <p>Tons profundos e atmosféricos. O visitante chega frequentemente em momento de fragilidade — o site precisa ser um lugar seguro.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">ii.</span>
+        <h4>Autoridade</h4>
+        <p>Tipografia editorial e composição cuidada comunicam formação, método e responsabilidade clínica sem pedanterismo.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">iii.</span>
+        <h4>Singularidade</h4>
+        <p>Não é mais um site genérico de psicóloga. Há autoria, há uma mulher inteira por trás disso — psicóloga e pessoa.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">iv.</span>
+        <h4>Convite</h4>
+        <p>O fechamento com o sofá e o quadro LA convida sem pressão. Convite genuíno ao encontro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━ PREVIEW ━━━━━━━━━ -->
+<section class="slide preview" data-name="A proposta">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— A proposta</span>
+    <span class="slide-chrome-num">iii.</span>
+  </div>
+
+  <div class="preview-grid">
+    <div class="preview-info">
+      <span class="eyebrow">Versão proposta</span>
+      <div class="preview-paleta">
+        <span class="preview-paleta-tag" style="background:#111A19"></span>
+        <span class="preview-paleta-tag" style="background:#4A1A23"></span>
+        <span class="preview-paleta-tag" style="background:#8B2535"></span>
+        <span class="preview-paleta-tag" style="background:#C8DDBF"></span>
+        <span class="preview-paleta-tag" style="background:#F6F4F0"></span>
+      </div>
+      <h3 class="preview-numero">01<em>.</em></h3>
+      <h2 class="preview-nome">Cinematográfica<br><em>atmosférica</em></h2>
+      <p class="preview-desc">
+        Verde-floresta e bordô profundo, animações de scroll, vinheta radial, marcadores que acendem conforme você desce. Sensação de intimidade noturna — como entrar num consultório à luz de uma luminária baixa.
+      </p>
+
+      <div class="preview-attrs">
+        <div>
+          <span class="preview-attr-label">Mood</span>
+          <span class="preview-attr-value">Íntima · contemplativa</span>
+        </div>
+        <div>
+          <span class="preview-attr-label">Tipografia</span>
+          <span class="preview-attr-value">Outfit + Cormorant</span>
+        </div>
+        <div>
+          <span class="preview-attr-label">Diferenciação</span>
+          <span class="preview-attr-value">Alta — pouco vista no setor</span>
+        </div>
+        <div>
+          <span class="preview-attr-label">Comunica</span>
+          <span class="preview-attr-value">Profundidade e cuidado</span>
+        </div>
+      </div>
+
+      <div class="preview-actions">
+        <a href="Lucimar Antunes.html" target="_blank" class="btn btn-primary">Abrir site completo →</a>
+      </div>
+    </div>
+
+    <div class="preview-frame-wrap">
+      <div class="preview-bar">
+        <span class="preview-bar-dot"></span>
+        <span class="preview-bar-dot"></span>
+        <span class="preview-bar-dot"></span>
+        <span class="preview-bar-url">lucimar-antunes.com.br</span>
+      </div>
+      <div class="preview-frame">
+        <iframe src="Lucimar Antunes.html" loading="lazy" title="Lucimar Antunes — Site"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━ FEATURES ━━━━━━━━━ -->
+<section class="slide features" data-name="Recursos">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— O que faz parte</span>
+    <span class="slide-chrome-num">iv.</span>
+  </div>
+
+  <div class="features-inner">
+    <div class="features-header">
+      <span class="eyebrow" style="margin: 0 auto 1.5rem;">— Recursos do site</span>
+      <h2 class="display-title">Cada detalhe <em>conversa</em><br>com a abordagem</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">i</div>
+        <h3>Hero atmosférico</h3>
+        <p>Apresentação inicial com tipografia editorial e foto profissional integrada — primeiro contato visual já comunica a proposta.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">ii</div>
+        <h3>Linha de presença animada</h3>
+        <p>Na seção de caminhos, a linha bordô cresce conforme você scrolla, e cada marcador acende ao ser ultrapassado — narrativa visual do processo terapêutico.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">iii</div>
+        <h3>Quem sou eu — duas dimensões</h3>
+        <p>Divisão "A psicóloga" e "A pessoa" com transição harmônica entre verde e bordô. Mostra a profissional e a pessoa por trás.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">iv</div>
+        <h3>Fragmentos da abordagem</h3>
+        <p>Quatro citações fundamentais sobre humanismo, fenomenologia, liberdade e cuidado — densidade conceitual sem peso acadêmico.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">v</div>
+        <h3>CTA com presença</h3>
+        <p>Encerramento com a sala completa (sofá Chesterfield + quadro LA) e dois caminhos: WhatsApp e Lattes. Convida sem pressionar.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">vi</div>
+        <h3>Acessível e responsivo</h3>
+        <p>Respeita preferências de movimento reduzido, otimizado para celular e desktop, navegação por teclado, lazy loading de imagens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━ RESPONSIVO ━━━━━━━━━ -->
+<section class="slide responsivo" data-name="Desktop & Mobile">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— Desktop &amp; mobile</span>
+    <span class="slide-chrome-num">v.</span>
+  </div>
+
+  <div class="responsivo-inner">
+    <div class="responsivo-header">
+      <span class="eyebrow">— Em qualquer tela</span>
+      <h2 class="display-title">A mesma <em>presença</em>,<br>adaptada</h2>
+    </div>
+
+    <div class="responsivo-display">
+      <div class="desktop-mock">
+        <div class="desktop-mock-bar">
+          <span class="desktop-mock-bar-dot"></span>
+          <span class="desktop-mock-bar-dot"></span>
+          <span class="desktop-mock-bar-dot"></span>
+        </div>
+        <iframe src="Lucimar Antunes.html#sobre" loading="lazy" title="Desktop view"></iframe>
+      </div>
+      <div class="mobile-mock">
+        <iframe src="Lucimar Antunes.html#contato" loading="lazy" title="Mobile view"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━ FECHAMENTO ━━━━━━━━━ -->
+<section class="slide closing" data-name="Próximos passos">
+  <div class="slide-chrome">
+    <span class="slide-chrome-mark">— Próximos passos</span>
+    <span class="slide-chrome-num">vi.</span>
+  </div>
+
+  <div class="closing-inner">
+    <span class="eyebrow" style="margin: 0 auto 2rem;">— Pronto para o encontro</span>
+    <h2 class="display-title closing-display">Existir é <em>escolher-se</em><br>a cada encontro</h2>
+    <p class="closing-deck">
+      O site está pronto. Agora cabe a você experimentar a navegação, sentir os detalhes, e, se houver ajuste — refinamos juntas.
+    </p>
+
+    <div class="closing-actions">
+      <a href="Lucimar Antunes.html" target="_blank" class="btn btn-primary">Abrir o site →</a>
+      <a href="Lucimar Antunes.html#contato" target="_blank" class="btn">Ir direto para o contato</a>
+    </div>
+
+    <p class="closing-foot">
+      <strong>Lucimar Antunes</strong> · CRP 06/229039 · Campinas / Online &amp; Presencial
+    </p>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const indicators = document.getElementById('indicators');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'indicator';
+    dot.title = slides[i].dataset.name;
+    dot.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
+    indicators.appendChild(dot);
+  });
+
+  const indicatorEls = document.querySelectorAll('.indicator');
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = [...slides].indexOf(e.target);
+        indicatorEls.forEach(d => d.classList.remove('active'));
+        if (indicatorEls[idx]) indicatorEls[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.5 });
+  slides.forEach(s => slideObserver.observe(s));
+
+  function getCurrentIdx() {
+    return Math.round(window.scrollY / window.innerHeight);
+  }
+  document.addEventListener('keydown', (e) => {
+    const idx = getCurrentIdx();
+    if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      if (slides[idx + 1]) slides[idx + 1].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      if (slides[idx - 1]) slides[idx - 1].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      slides[0].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
+
+</body>
+</html>
