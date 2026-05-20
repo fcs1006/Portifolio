@@ -636,6 +636,9 @@
 
     .hobby-circles {
       width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
       overflow: visible;
     }
 
@@ -684,7 +687,7 @@
       text-align: center;
       margin-left: auto;
       margin-right: auto;
-      white-space: nowrap;
+      max-width: 78ch;
     }
 
     .ajuda-intro p {
@@ -717,7 +720,9 @@
       font-weight: 400;
       margin-bottom: 2.5rem;
       text-align: center;
-      white-space: nowrap;
+      max-width: 72ch;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .ajuda-btn {
@@ -1028,6 +1033,7 @@
       font-size: 0.76rem;
       color: rgba(240, 212, 188, 0.25);
       line-height: 1.8;
+      overflow-wrap: anywhere;
     }
 
     footer {
@@ -1502,6 +1508,44 @@
         text-align: center;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        width: 100%;
+      }
+
+      .btn-fill,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .servico {
+        padding: 2rem 1.25rem;
+      }
+
+      .frase {
+        padding: 1.5rem;
+      }
+
+      #view-switcher {
+        right: 0.75rem;
+        bottom: 0.75rem;
+        transform: scale(0.9);
+        transform-origin: bottom right;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 
@@ -1914,10 +1958,14 @@
     (function () {
       const canvas = document.getElementById('bg-canvas');
       const ctx = canvas.getContext('2d');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let rafId = null;
 
       function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       resize();
       window.addEventListener('resize', resize);
@@ -1935,7 +1983,8 @@
       let t = 0;
       function draw(ts) {
         t = ts;
-        const W = canvas.width, H = canvas.height;
+        const W = window.innerWidth;
+        const H = window.innerHeight;
         ctx.clearRect(0, 0, W, H);
 
         // warm off-white base
@@ -1961,10 +2010,25 @@
           ctx.fill();
         });
 
-        requestAnimationFrame(draw);
+        rafId = requestAnimationFrame(draw);
       }
 
-      requestAnimationFrame(draw);
+      if (!prefersReducedMotion) {
+        rafId = requestAnimationFrame(draw);
+      } else {
+        ctx.fillStyle = '#FAF6F0';
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (prefersReducedMotion) return;
+        if (document.hidden && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        } else if (!document.hidden && !rafId) {
+          rafId = requestAnimationFrame(draw);
+        }
+      });
     })();
   </script>
 
